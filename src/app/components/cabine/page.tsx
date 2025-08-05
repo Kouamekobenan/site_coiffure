@@ -9,7 +9,7 @@ import {
   Shield,
   QrCode,
 } from "lucide-react";
-export const MaCabine = () => {
+export default function MaCabine()  {
   const [isTransferStarted, setIsTransferStarted] = useState(false);
   const phone = "+2250769241128";
   const message = `Bonjour, Monsieur K pouvez-vous me recharger sur ce numéro (entre le numéro et le montant) :`;
