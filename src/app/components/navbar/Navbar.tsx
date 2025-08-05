@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react"; 
-export const Navbar = () => {
+export default function Navbar() {
+ 
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
   return (

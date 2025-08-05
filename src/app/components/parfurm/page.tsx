@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { Star, MessageCircle, Sparkles, Crown, Gift } from "lucide-react";
 import { Parfurms } from "@/app/data/db";
-export const ParfumSale = () => {
+export default function ParfumSale() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");
   const categories = ["Tous", "Femme", "Homme", "Unisexe"];
   const filteredParfums =

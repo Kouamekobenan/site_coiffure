@@ -1,7 +1,8 @@
 import React from "react";
-import { Navbar } from "../components/navbar/Navbar";
-import { Footer } from "../components/footer/footer";
-import { ParfumSale } from "../components/parfurm/page";
+import Navbar from "../components/navbar/Navbar";
+import ParfumSale from "../components/parfurm/page";
+import Footer from "../components/footer/footer";
+
 export default function page() {
   return (
     <div className="">

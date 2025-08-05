@@ -3,7 +3,7 @@ import { whatsappLink } from "@/app/whattsap/api";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-export const Banniere = () => {
+export default function Banniere() {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -85,9 +85,10 @@ export const Banniere = () => {
                 <p className="text-base md:text-lg lg:text-xl mb-8 text-gray-200 leading-relaxed">
                   {slide.subtitle}
                 </p>
-                <button 
-                 onClick={() => window.open(whatsappLink, "_blank")}
-                className="bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                <button
+                  onClick={() => window.open(whatsappLink, "_blank")}
+                  className="bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                >
                   Prendre Rendez-vous
                 </button>
               </div>

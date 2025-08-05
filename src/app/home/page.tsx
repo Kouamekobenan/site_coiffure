@@ -1,6 +1,7 @@
-import { Banniere } from "../components/banniere/Banniere";
-import { Footer } from "../components/footer/footer";
-import { Navbar } from "../components/navbar/Navbar";
+
+import Banniere from "../components/banniere/Banniere";
+import Footer from "../components/footer/footer";
+import Navbar from "../components/navbar/Navbar";
 import { Service } from "../components/service/Service";
 
 export default function LoaderPage() {

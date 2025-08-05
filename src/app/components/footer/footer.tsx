@@ -5,7 +5,7 @@ import Link from "next/link";
 import { whatsappLink } from "@/app/whattsap/api";
 import { Phone } from "lucide-react";
 
-export const Footer = () => {
+export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       {/* Section principale */}

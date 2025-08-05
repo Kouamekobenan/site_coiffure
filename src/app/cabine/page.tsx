@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
-import { Navbar } from "../components/navbar/Navbar";
-import { Footer } from "../components/footer/footer";
-import { MaCabine } from "../components/cabine/page";
+import Navbar from "../components/navbar/Navbar";
+import MaCabine from "../components/cabine/page";
+import Footer from "../components/footer/footer";
 
-export default function page() {
+export default function Page() {
   return (
     <div className="">
       <div className="">
-        <Navbar />
+        <Navbar  />
       </div>
       <div className="">
         <MaCabine />
