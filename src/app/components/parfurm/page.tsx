@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Star, MessageCircle, Sparkles, Crown, Gift } from "lucide-react";
 import { Parfurms } from "@/app/data/db";
 export default function ParfumSale() {
-  const [selectedCategory, setSelectedCategory] = useState("Tous");
+  const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
   const categories = ["Tous", "Femme", "Homme", "Unisexe"];
   const filteredParfums =
     selectedCategory === "Tous"

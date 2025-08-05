@@ -5,12 +5,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { House, ZoomIn } from "lucide-react";
 
+// Types
+interface ImageItem {
+  id: string | number;
+  image: string;
+}
+
+interface SelectedImage extends ImageItem {
+  index: number;
+}
+
+interface Category {
+  id: string;
+  name: string;
+  icon: string;
+}
+
+type FilterType = "all" | "coupe" | "coloration" | "style";
+type NavigationDirection = "next" | "prev";
+
 export default function GalleryPage() {
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [filter, setFilter] = useState("all");
-  const [loadedImages, setLoadedImages] = useState(new Set());
+  const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(
+    null
+  );
+  const [filter, setFilter] = useState<FilterType>("all");
+  const [loadedImages, setLoadedImages] = useState<Set<string | number>>(
+    new Set()
+  );
+
   // Catégories pour le filtrage
-  const categories = [
+  const categories: Category[] = [
     { id: "all", name: "Toutes", icon: "grid" },
     { id: "coupe", name: "Coupes", icon: "scissors" },
     { id: "coloration", name: "Colorations", icon: "palette" },
@@ -18,31 +42,31 @@ export default function GalleryPage() {
   ];
 
   // Simuler des catégories pour les images (vous pouvez adapter selon vos données)
-  const getImageCategory = (index) => {
-    const cats = ["coupe", "coloration", "style"];
+  const getImageCategory = (index: number): FilterType => {
+    const cats: FilterType[] = ["coupe", "coloration", "style"];
     return cats[index % cats.length];
   };
 
-  const filteredImages =
+  const filteredImages: ImageItem[] =
     filter === "all"
       ? Galeries
       : Galeries.filter((_, index) => getImageCategory(index) === filter);
 
-  const openModal = (image, index) => {
+  const openModal = (image: ImageItem, index: number): void => {
     setSelectedImage({ ...image, index });
     document.body.style.overflow = "hidden";
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setSelectedImage(null);
     document.body.style.overflow = "unset";
   };
 
-  const navigateImage = (direction) => {
+  const navigateImage = (direction: NavigationDirection): void => {
     if (!selectedImage) return;
 
-    const currentIndex = selectedImage.index;
-    let newIndex;
+    const currentIndex: number = selectedImage.index;
+    let newIndex: number;
 
     if (direction === "next") {
       newIndex = (currentIndex + 1) % filteredImages.length;
@@ -53,9 +77,10 @@ export default function GalleryPage() {
 
     setSelectedImage({ ...filteredImages[newIndex], index: newIndex });
   };
+
   // Fermer modal avec Escape
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === "Escape") closeModal();
       if (e.key === "ArrowRight") navigateImage("next");
       if (e.key === "ArrowLeft") navigateImage("prev");
@@ -68,8 +93,49 @@ export default function GalleryPage() {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [selectedImage]);
 
-  const handleImageLoad = (imageId) => {
+  const handleImageLoad = (imageId: string | number): void => {
     setLoadedImages((prev) => new Set([...prev, imageId]));
+  };
+
+  const renderIcon = (iconType: string) => {
+    const iconProps = {
+      className: "w-5 h-5",
+      fill: "none",
+      stroke: "currentColor",
+      viewBox: "0 0 24 24",
+      strokeLinecap: "round" as const,
+      strokeLinejoin: "round" as const,
+      strokeWidth: 2,
+    };
+
+    switch (iconType) {
+      case "grid":
+        return (
+          <svg {...iconProps}>
+            <path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+          </svg>
+        );
+      case "scissors":
+        return (
+          <svg {...iconProps}>
+            <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+          </svg>
+        );
+      case "palette":
+        return (
+          <svg {...iconProps}>
+            <path d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
+          </svg>
+        );
+      case "star":
+        return (
+          <svg {...iconProps}>
+            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+          </svg>
+        );
+      default:
+        return <div></div>;
+    }
   };
 
   return (
@@ -94,55 +160,17 @@ export default function GalleryPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Filtres */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
+          {categories.map((category: Category) => (
             <button
               key={category.id}
-              onClick={() => setFilter(category.id)}
+              onClick={() => setFilter(category.id as FilterType)}
               className={`flex items-center space-x-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 filter === category.id
                   ? "bg-orange-600 text-white shadow-lg transform scale-105"
                   : "bg-white text-gray-700 hover:bg-orange-50 hover:text-orange-600 shadow-md hover:shadow-lg"
               }`}
             >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {category.icon === "grid" && (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  />
-                )}
-                {category.icon === "scissors" && (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-                  />
-                )}
-                {category.icon === "palette" && (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"
-                  />
-                )}
-                {category.icon === "star" && (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                  />
-                )}
-              </svg>
+              {renderIcon(category.icon)}
               <span>{category.name}</span>
             </button>
           ))}
@@ -160,7 +188,7 @@ export default function GalleryPage() {
                 {" "}
                 dans la catégorie{" "}
                 <span className="font-semibold text-orange-600">
-                  {categories.find((c) => c.id === filter)?.name}
+                  {categories.find((c: Category) => c.id === filter)?.name}
                 </span>
               </span>
             )}
@@ -169,7 +197,7 @@ export default function GalleryPage() {
 
         {/* Grille d'images */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-          {filteredImages.map((item, index) => (
+          {filteredImages.map((item: ImageItem, index: number) => (
             <div
               key={`${item.id}-${filter}`}
               className="group relative bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-500 hover:scale-105 hover:shadow-2xl cursor-pointer"
@@ -202,20 +230,23 @@ export default function GalleryPage() {
                 {/* Icône zoom */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-110">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center">
-                    <ZoomIn />
+                    <ZoomIn className="w-6 h-6 text-white" />
                   </div>
                 </div>
+
                 {/* Badge catégorie */}
                 <div className="absolute top-3 left-3 bg-orange-600 text-white px-2 py-1 rounded-full text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   {
-                    categories.find((c) => c.id === getImageCategory(index))
-                      ?.name
+                    categories.find(
+                      (c: Category) => c.id === getImageCategory(index)
+                    )?.name
                   }
                 </div>
               </div>
             </div>
           ))}
         </div>
+
         {/* Message si aucune image */}
         {filteredImages.length === 0 && (
           <div className="text-center py-16">
@@ -251,6 +282,7 @@ export default function GalleryPage() {
           <button
             onClick={closeModal}
             className="absolute top-4 right-4 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors duration-300"
+            aria-label="Fermer la modal"
           >
             <svg
               className="w-6 h-6"
@@ -271,6 +303,7 @@ export default function GalleryPage() {
           <button
             onClick={() => navigateImage("prev")}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors duration-300"
+            aria-label="Image précédente"
           >
             <svg
               className="w-6 h-6"
@@ -291,6 +324,7 @@ export default function GalleryPage() {
           <button
             onClick={() => navigateImage("next")}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition-colors duration-300"
+            aria-label="Image suivante"
           >
             <svg
               className="w-6 h-6"
@@ -328,12 +362,13 @@ export default function GalleryPage() {
           <div className="absolute inset-0 -z-10" onClick={closeModal}></div>
         </div>
       )}
+
       <Link
         href="/home"
         className="fixed bottom-6 right-6 z-50 bg-orange-600 hover:bg-orange-700 text-white p-4 rounded-full shadow-lg transition duration-300 ease-in-out"
         aria-label="Retour à l'accueil"
       >
-        <House />
+        <House className="w-6 h-6" />
       </Link>
     </div>
   );

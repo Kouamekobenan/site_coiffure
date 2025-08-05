@@ -3,10 +3,17 @@ import { whatsappLink } from "@/app/whattsap/api";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-export default function Banniere() {
-  const [currentSlide, setCurrentSlide] = useState(0);
+// Types
+interface Slide {
+  image: string;
+  title: string;
+  subtitle: string;
+}
 
-  const slides = [
+export default function Banniere() {
+  const [currentSlide, setCurrentSlide] = useState<number>(0);
+
+  const slides: Slide[] = [
     {
       image: "/coifures/coif1.jpg",
       title: "Coiffure Professionnelle",
@@ -26,30 +33,36 @@ export default function Banniere() {
 
   // Défilement automatique
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    const timer: NodeJS.Timeout = setInterval(() => {
+      setCurrentSlide((prev: number) => (prev + 1) % slides.length);
     }, 4000); // Change d'image toutes les 4 secondes
 
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number): void => {
     setCurrentSlide(index);
   };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const nextSlide = (): void => {
+    setCurrentSlide((prev: number) => (prev + 1) % slides.length);
   };
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  const prevSlide = (): void => {
+    setCurrentSlide(
+      (prev: number) => (prev - 1 + slides.length) % slides.length
+    );
+  };
+
+  const handleWhatsAppClick = (): void => {
+    window.open(whatsappLink, "_blank");
   };
 
   return (
     <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gradient-to-r from-orange-100 to-orange-50 shadow-lg">
       {/* Conteneur des images */}
       <div className="relative w-full h-full">
-        {slides.map((slide, index) => (
+        {slides.map((slide: Slide, index: number) => (
           <div
             key={index}
             className={`absolute inset-0 transition-all duration-700 ease-in-out ${
@@ -86,8 +99,10 @@ export default function Banniere() {
                   {slide.subtitle}
                 </p>
                 <button
-                  onClick={() => window.open(whatsappLink, "_blank")}
+                  onClick={handleWhatsAppClick}
                   className="bg-orange-600 hover:bg-orange-700 text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                  type="button"
+                  aria-label="Prendre rendez-vous via WhatsApp"
                 >
                   Prendre Rendez-vous
                 </button>
@@ -102,6 +117,7 @@ export default function Banniere() {
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Image précédente"
+        type="button"
       >
         <svg
           className="w-5 h-5 md:w-6 md:h-6"
@@ -122,6 +138,7 @@ export default function Banniere() {
         onClick={nextSlide}
         className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/20 hover:bg-white/30 text-white p-2 md:p-3 rounded-full transition-all duration-300 backdrop-blur-sm"
         aria-label="Image suivante"
+        type="button"
       >
         <svg
           className="w-5 h-5 md:w-6 md:h-6"
@@ -140,7 +157,7 @@ export default function Banniere() {
 
       {/* Indicateurs de position */}
       <div className="absolute bottom-4 md:bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map((_, index) => (
+        {slides.map((_: Slide, index: number) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
@@ -150,6 +167,7 @@ export default function Banniere() {
                 : "bg-white/50 hover:bg-white/70"
             }`}
             aria-label={`Aller à l'image ${index + 1}`}
+            type="button"
           />
         ))}
       </div>
@@ -160,4 +178,4 @@ export default function Banniere() {
       </div>
     </div>
   );
-};
+}
