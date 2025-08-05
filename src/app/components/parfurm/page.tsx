@@ -145,12 +145,12 @@ const phone = "2250769241128";
                   </div>
                   <span className="text-sm text-gray-600">({item.rating})</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                <h3 className="text-md font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
                   {item.name}
                 </h3>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-2xl font-bold text-purple-600">
-                    {item.price}
+                  <div className="text-xl font-bold text-purple-600">
+                    {item.price} Fcfa
                   </div>
                 </div>
                 {/* Action Buttons */}
