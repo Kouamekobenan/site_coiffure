@@ -24,12 +24,19 @@ export default function MaCabine() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pt-16">
+    <div className="min-h-screen bg-white pt-16">
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Header Section */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-orange-600 to-orange-600 rounded-full mb-6">
-            <Smartphone className="w-8 h-8 text-white" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6">
+            <Image
+              src="/logo.png"
+              alt="Logo Monsieur K"
+              width={40}
+              height={40}
+              className="rounded-full object-cover sm:w-[50px] sm:h-[50px]"
+              priority
+            />{" "}
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Transfert d&apos;Unités en Ligne
@@ -88,8 +95,8 @@ export default function MaCabine() {
           <div className="space-y-8">
             <div className="bg-white rounded-2xl p-8 shadow-xl">
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                  <Clock className="w-6 h-6 text-orange-600" />
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-300 rounded-full flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -102,10 +109,9 @@ export default function MaCabine() {
                   </p>
                 </div>
               </div>
-
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                  <Shield className="w-6 h-6 text-green-600" />
+                <div className="flex-shrink-0 w-12 h-12 bg-orange-300 rounded-full flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -118,16 +124,15 @@ export default function MaCabine() {
                 </div>
               </div>
             </div>
-
             {/* QR Code Section */}
             <div className="bg-gradient-to-r from-orange-600 to-orange-600 rounded-2xl p-8 text-white">
               <div className="flex items-center gap-6">
                 <div className="flex-shrink-0">
-                  <div className="w-20 h-20 bg-white rounded-xl flex items-center justify-center p-2">
+                  <div className="flex-1/2 w-20 h-20 bg-white rounded-xl flex items-center justify-center p-1">
                     <Image
-                      src="/cabine/m4.png"
+                      src="/qrcode.jpg"
                       alt="Code QR de confirmation"
-                      width={80}
+                      width={200}
                       height={80}
                       className="w-full h-full object-contain"
                       priority
@@ -155,19 +160,19 @@ export default function MaCabine() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-600">1</span>
+              <div className="w-16 h-16 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">1</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Cliquez sur`Commencer`
+                Cliquez sur `Commencer`
               </h3>
               <p className="text-gray-600">
                 Appuyez sur le bouton pour initier votre transfert d&apos;unités
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-green-600">2</span>
+              <div className="w-16 h-16 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">2</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 WhatsApp s&apos;ouvre
@@ -177,8 +182,8 @@ export default function MaCabine() {
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-orange-600">3</span>
+              <div className="w-16 h-16 bg-orange-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl font-bold text-white">3</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
                 Scannez le QR

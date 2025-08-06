@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Star, MessageCircle, Sparkles, Crown, Gift } from "lucide-react";
+import {MessageCircle, Crown, Gift } from "lucide-react";
 import { Parfurms } from "@/app/data/db";
 export default function ParfumSale() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Tous");
@@ -30,7 +30,7 @@ const phone = "2250769241128";
     <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
       {/* Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/80 to-pink-900/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-pink-900/80"></div>
         <Image
           src="/parfurms/images.jpg"
           width={1200}
@@ -40,9 +40,6 @@ const phone = "2250769241128";
         />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-white/20 rounded-full mb-6">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
             <h1 className="text-3xl md:text-5xl font-bold mb-4">
               Collection Parfums Premium
             </h1>
@@ -57,8 +54,8 @@ const phone = "2250769241128";
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Crown className="w-8 h-8 text-purple-600" />
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Crown className="w-8 h-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Qualité Premium
@@ -68,8 +65,8 @@ const phone = "2250769241128";
             </p>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <MessageCircle className="w-8 h-8 text-pink-600" />
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <MessageCircle className="w-8 h-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Réservation Facile
@@ -79,8 +76,8 @@ const phone = "2250769241128";
             </p>
           </div>
           <div className="text-center p-6 bg-white rounded-2xl shadow-lg">
-            <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Gift className="w-8 h-8 text-indigo-600" />
+            <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Gift className="w-8 h-8 text-orange-600" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Livraison Rapide
@@ -98,7 +95,7 @@ const phone = "2250769241128";
               onClick={() => setSelectedCategory(category)}
               className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg"
+                  ? "bg-gradient-to-r from-orange-600 to-pink-600 text-white shadow-lg"
                   : "bg-white text-gray-700 hover:bg-gray-100 shadow-md"
               }`}
             >
@@ -111,7 +108,7 @@ const phone = "2250769241128";
           {filteredParfums.map((item, index) => (
             <div
               key={index}
-              className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-sm transition-all duration-300 transform hover:-translate-y-0.5"
             >
               {/* Product Image */}
               <div className="relative overflow-hidden">
@@ -123,33 +120,18 @@ const phone = "2250769241128";
                   className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                  <span className="bg-gradient-to-r from-orange-600 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
                     {item.category}
                   </span>
                 </div>
               </div>
               {/* Product Info */}
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="flex items-center">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < Math.floor(item.rating)
-                            ? "text-yellow-400 fill-current"
-                            : "text-gray-300"
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">({item.rating})</span>
-                </div>
-                <h3 className="text-md font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                <h3 className="text-md font-bold text-gray-900 mb-2 group-hover:text-green-600 transition-colors">
                   {item.name}
                 </h3>
                 <div className="flex items-center justify-between mb-4">
-                  <div className="text-xl font-bold text-purple-600">
+                  <div className="text-xl font-bold text-orange-600">
                     {item.price} Fcfa
                   </div>
                 </div>
@@ -160,7 +142,7 @@ const phone = "2250769241128";
                     className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white py-3 px-4 rounded-xl font-semibold hover:from-green-600 hover:to-green-700 transition-all duration-300 flex items-center justify-center gap-2"
                   >
                     <MessageCircle className="w-5 h-5" />
-                    Réserver sur WhatsApp
+                     WhatsApp
                   </button>
                 </div>
               </div>
@@ -169,7 +151,7 @@ const phone = "2250769241128";
         </div>
         {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 text-white">
+          <div className="bg-gradient-to-r from-orange-600 to-pink-600 rounded-2xl p-8 text-white">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Vous ne trouvez pas votre parfum favori ?
             </h3>
@@ -184,7 +166,7 @@ const phone = "2250769241128";
                   "_blank"
                 )
               }
-              className="bg-white text-purple-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors duration-300 inline-flex items-center gap-3"
+              className="bg-white text-green-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors duration-300 inline-flex items-center gap-3"
             >
               <MessageCircle className="w-6 h-6" />
               Demande personnalisée

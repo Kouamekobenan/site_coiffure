@@ -1,16 +1,9 @@
+"use client";
 import React from "react";
-import {
-  MapPin,
-  Users,
-  Clock,
-  Star,
-  Phone,
-  Mail,
-  House,
-} from "lucide-react";
+import { MapPin, Users, Clock, Star, Phone, Mail, House } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { whatsappLink } from "@/app/whattsap/api";
 export default function AboutMe() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
@@ -156,7 +149,6 @@ export default function AboutMe() {
                 Jardin, près de la célèbre maison ronde. Un emplacement central
                 et accessible pour votre commodité.
               </p>
-
               <div className="space-y-4">
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
                   <MapPin className="w-5 h-5 text-red-600 flex-shrink-0 mt-1" />
@@ -164,14 +156,15 @@ export default function AboutMe() {
                     <p className="font-semibold text-gray-900">
                       Adresse complète
                     </p>
-                    <p className="text-gray-600">
-                      Quartier Jardin, près de la Maison Ronde
+                    <p className="text-gray-800 leading-relaxed">
+                      Bondoukou, Quartier Zanzan
                       <br />
-                      Bondoukou, Côte d&apos;Ivoire
+                      <span className="text-orange-600">
+                        Derrière la maison ronde avant EPP Alliagui
+                      </span>
                     </p>
                   </div>
                 </div>
-
                 <div className="flex items-start gap-3 p-4 bg-gray-50 rounded-lg">
                   <Clock className="w-5 h-5 text-orange-600 flex-shrink-0 mt-1" />
                   <div>
@@ -179,15 +172,16 @@ export default function AboutMe() {
                       Horaires d&apos;ouverture
                     </p>
                     <p className="text-gray-600">
-                      Lundi - Samedi: 8h00 - 19h00
+                      Lundi - Jeudi: 9h00 - 21h00
                       <br />
-                      Dimanche: 10h00 - 17h00
+                      Vendredi: 14h00 -22h00
+                      <br />
+                      Samedi-Dimanche: 8h00 - 22h00
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-
             <div className="space-y-6">
               {/* Contact Info */}
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 text-white">
@@ -195,29 +189,29 @@ export default function AboutMe() {
                 <div className="space-y-3">
                   <div className="flex items-center gap-3">
                     <Phone className="w-5 h-5 text-green-400" />
-                    <span>+2250506832678</span>
+                    <span> +225 07 69 24 11 28</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-blue-400" />
-                    <span>contact@coiffure-bondoukou.ci</span>
+                    <span> tustylamarck@gmail.com</span>
                   </div>
                 </div>
               </div>
-
               {/* Map placeholder */}
-              <div className="bg-gray-200 rounded-xl h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <MapPin className="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                  <p className="text-gray-600 font-medium">Carte Interactive</p>
-                  <p className="text-sm text-gray-500">
-                    Cliquez pour voir notre localisation
-                  </p>
-                </div>
+              <div className="rounded-xl overflow-hidden shadow-lg">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.270249401624!2d-2.8098129030522956!3d8.046216167923676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfcf950b8ad0cc27%3A0x70a864ded1156988!2sSalon%20de%20coiffure%20pour%20hommes!5e0!3m2!1sfr!2sci!4v1754440545589!5m2!1sfr!2sci"
+                  width="600"
+                  height="450"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
-
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-8 text-white">
@@ -228,7 +222,10 @@ export default function AboutMe() {
               Venez découvrir notre savoir-faire et repartez avec le style qui
               vous ressemble
             </p>
-            <button className="bg-white text-gray-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300">
+            <button
+              onClick={() => window.open(whatsappLink, "_blank")}
+              className="bg-white text-gray-600 px-8 py-3 cursor-pointer rounded-full font-semibold hover:bg-gray-100 transition-colors duration-300"
+            >
               Prendre rendez-vous
             </button>
           </div>

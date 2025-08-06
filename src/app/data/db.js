@@ -1,26 +1,26 @@
 export const Coifures = [
   {
     id: "A1235",
-    name: "Limitation simple",
-    price: 200,
+    name: "Limitation ",
+    price: 300,
     image: "/coifures/coif1.jpg",
   },
   {
     id: "A1236",
-    name: "Coiffure limité",
-    price: 500,
-    image: "/coifures/coif2.jpg",
+    name: "Coiffure simple",
+    price: 1000,
+    image: "/coifures/coif-simple.jpg",
   },
   {
     id: "A1237",
-    name: "Drague",
-    price: 1000,
-    image: "/coifures/coif3.jpg",
+    name: "Dread",
+    price: 1500,
+    image: "/coifures/Dread.jpg",
   },
   {
     id: "A1238",
     name: "Deux Tont",
-    price: 500,
+    price: 1000,
     image: "/coifures/coif5.jpg",
   },
 ];
@@ -73,7 +73,7 @@ export const Galeries = [
 export const Parfurms = [
   {
     id: "A1235",
-    name: "Nom 1",
+    name: "Homme & Femme",
     category: "Unisexe",
     price: 1000,
     image: "/parfurms/img1.jpg",
@@ -81,7 +81,7 @@ export const Parfurms = [
   },
   {
     id: "A1236",
-    name: "Nom 2",
+    name: "Homme",
     price: 3000,
     image: "/parfurms/img2.jpg",
     category: "Homme",
@@ -89,7 +89,7 @@ export const Parfurms = [
   },
   {
     id: "A1237",
-    name: "Nom 3",
+    name: "Chanel",
     price: 1000,
     image: "/parfurms/img3.jpg",
     category: "Femme",
@@ -97,7 +97,7 @@ export const Parfurms = [
   },
   {
     id: "A1238",
-    name: "Nom 4",
+    name: "Chanel",
     price: 1500,
     image: "/parfurms/img4.jpg",
     category: "Femme",
@@ -105,7 +105,7 @@ export const Parfurms = [
   },
   {
     id: "A1239K",
-    name: "Nom 5",
+    name: "Coco Chanel",
     price: 1500,
     image: "/parfurms/img6.jpg",
     category: "Unisexe",
@@ -113,7 +113,7 @@ export const Parfurms = [
   },
   {
     id: "A1238KC",
-    name: "Nom 7",
+    name: "GIO",
     price: 1500,
     image: "/parfurms/img7.jpg",
     category: "Unisexe",
@@ -121,7 +121,7 @@ export const Parfurms = [
   },
   {
     id: "A12310PC",
-    name: "Nom 8",
+    name: "Homme et Femme",
     price: 1500,
     image: "/parfurms/img8.jpg",
     category: "Unisexe",
@@ -129,7 +129,7 @@ export const Parfurms = [
   },
   {
     id: "A1238TKC",
-    name: "Nom 9",
+    name: "Homme & Femme",
     price: 1500,
     image: "/parfurms/img9.jpg",
     category: "Unisexe",
@@ -137,7 +137,7 @@ export const Parfurms = [
   },
   {
     id: "A1238AZER",
-    name: "Nom 10",
+    name: "Parfum Femme",
     price: 1500,
     image: "/parfurms/img10.jpg",
     category: "Femme",

@@ -4,10 +4,8 @@ import { Coifures } from "@/app/data/db";
 import { whatsappLink } from "@/app/whattsap/api";
 import Image from "next/image";
 import { AlarmClock } from "lucide-react";
-
 export const Service = () => {
-  const phone = "2250747235898"; // Ton numéro WhatsApp (sans +)
-
+  const phone = "2250769241128";
   return (
     <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +32,7 @@ export const Service = () => {
             return (
               <div
                 key={item.id}
-                className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:-translate-y-2 hover:rotate-1"
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-md transition-all duration-500 overflow-hidden transform hover:-translate-y-0.5"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 {/* Container image */}
@@ -72,7 +70,6 @@ export const Service = () => {
                     </svg>
                   </div>
                 </div>
-
                 {/* Contenu de la carte */}
                 <div className="p-6 pt-8">
                   <div className="mb-4">
@@ -85,20 +82,19 @@ export const Service = () => {
                   </div>
 
                   <div className="flex items-center justify-between mb-6">
-                    <div className="flex flex-col">
-                      <span className="text-2xl md:text-3xl font-bold text-orange-600">
+                    <div className="flex gap-1 flex-col">
+                      <span className="text-xl md:text-xl font-bold text-orange-600">
                         {item.price} FCFA
                       </span>
                       <span className="text-xs text-gray-500">À partir de</span>
                     </div>
                     <div className="text-right">
                       <div className="text-sm text-gray-600 flex items-center">
-                        <AlarmClock />
+                        <AlarmClock size={15} />
                         ~45 min
                       </div>
                     </div>
                   </div>
-
                   {/* Bouton WhatsApp */}
                   <a
                     href={whatsappLink}
@@ -109,39 +105,42 @@ export const Service = () => {
                     Prendre RDV via WhatsApp
                   </a>
                 </div>
-
-                {/* Étoiles */}
-                <div className="px-6 pb-4">
-                  <div className="flex items-center justify-center space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        className={`w-4 h-4 ${
-                          i < 4 ? "text-yellow-400" : "text-gray-300"
-                        }`}
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                    <span className="text-sm text-gray-600 ml-2">4.8/5</span>
-                  </div>
-                </div>
               </div>
             );
           })}
         </div>
-        <div className="text-center mt-12 md:mt-16">
-          <p className="text-lg text-gray-600 mb-6">
-            Vous ne trouvez pas le service qui vous convient ?
-          </p>
-          <button
-            onClick={() => window.open(whatsappLink, "_blank")}
-            className="bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
-          >
-            Contactez-nous pour un devis personnalisé
-          </button>
+        <div className="mt-12 md:mt-16">
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            {/* Colonne gauche : texte + bouton */}
+            <div className="text-center md:text-left space-y-6">
+              <h3 className="text-2xl font-bold text-gray-800">
+                Vous ne trouvez pas le service qui vous convient ?
+              </h3>
+              <p className="text-lg text-gray-600">
+                Contactez-nous pour un devis personnalisé ou toute demande
+                spéciale via WhatsApp.
+              </p>
+              <button
+                onClick={() => window.open(whatsappLink, "_blank")}
+                className="bg-white border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
+              >
+                Écrire sur WhatsApp
+              </button>
+            </div>
+            {/* Colonne droite : carte Google Maps */}
+            <div className="w-full h-full rounded-xl overflow-hidden shadow-lg border border-gray-200">
+              <iframe
+                title="Localisation du salon"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1975.270249401624!2d-2.8098129030522956!3d8.046216167923676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfcf950b8ad0cc27%3A0x70a864ded1156988!2sSalon%20de%20coiffure%20pour%20hommes!5e0!3m2!1sfr!2sci!4v1754440545589!5m2!1sfr!2sci"
+                width="100%"
+                height="350"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </section>

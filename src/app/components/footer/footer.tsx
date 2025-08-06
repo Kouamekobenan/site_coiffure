@@ -3,8 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { whatsappLink } from "@/app/whattsap/api";
-import { Phone } from "lucide-react";
-
+import { Instagram, Mail, MapPin, Phone } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
@@ -26,7 +25,7 @@ export default function Footer() {
                   Monsieur K
                 </h3>
                 <p className="text-sm text-gray-300">
-                  Coiffure Professionnelle
+                  Coiffeure Professionnelle
                 </p>
               </div>
             </div>
@@ -35,7 +34,6 @@ export default function Footer() {
               d&apos;expérience pour sublimer votre style avec passion et
               expertise.
             </p>
-
             {/* Réseaux sociaux */}
             <div className="flex space-x-4">
               <a
@@ -56,13 +54,7 @@ export default function Footer() {
                 className="w-10 h-10 bg-orange-600 hover:bg-orange-700 rounded-full flex items-center justify-center transition-colors duration-300 group"
                 aria-label="Instagram"
               >
-                <svg
-                  className="w-5 h-5 group-hover:scale-110 transition-transform duration-300"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.73-3.016-1.8L7.583 14.1c.26.48.769.8 1.366.8.849 0 1.539-.69 1.539-1.539s-.69-1.539-1.539-1.539c-.597 0-1.106.32-1.366.8L5.433 11.53c.568-1.07 1.719-1.8 3.016-1.8 1.886 0 3.415 1.529 3.415 3.415S10.335 16.56 8.449 16.56z" />
-                </svg>
+                <Instagram />
               </a>
               <a
                 href="#"
@@ -88,10 +80,10 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { name: "Accueil", href: "/home" },
-                { name: "Nos Services", href: "/services" },
-                { name: "Galerie", href: "/gallery" },
-                { name: "À Propos", href: "/about" },
-                { name: "Témoignages", href: "/testimonials" },
+                { name: "Autres Services", href: "/parfurm" },
+                { name: "Galerie", href: "/galerie" },
+                { name: "Ma cabine", href: "/cabine" },
+                { name: "A propos", href: "/about" },
               ].map((link) => (
                 <li key={link.name}>
                   <Link
@@ -127,31 +119,15 @@ export default function Footer() {
               {/* Adresse */}
               <div className="flex items-start space-x-3 group">
                 <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-orange-700 transition-colors duration-300">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                  <MapPin />
                 </div>
                 <div>
                   <p className="text-gray-300 leading-relaxed">
                     Bondoukou, Quartier Zanzan
                     <br />
-                    <span className="text-orange-300">vers Jardin Public</span>
+                    <span className="text-orange-300">
+                      Derrière la maison ronde avant EPP Alliagui
+                    </span>
                   </p>
                 </div>
               </div>
@@ -159,50 +135,25 @@ export default function Footer() {
               {/* Téléphone */}
               <div className="flex items-center space-x-3 group">
                 <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-orange-700 transition-colors duration-300">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                    />
-                  </svg>
+                  <Phone />
                 </div>
                 <a
                   href="tel:+2250123456789"
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-300"
                 >
-                  +225 01 23 45 67 89
+                  +225 07 69 24 11 28
                 </a>
               </div>
-
               {/* Email */}
               <div className="flex items-center space-x-3 group">
                 <div className="w-8 h-8 bg-orange-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-orange-700 transition-colors duration-300">
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
+                  <Mail />
                 </div>
                 <a
                   href="mailto:contact@monsieurk.ci"
                   className="text-gray-300 hover:text-orange-400 transition-colors duration-300"
                 >
-                  contact@monsieurk.ci
+                  tustylamarck@gmail.com
                 </a>
               </div>
             </div>
@@ -215,9 +166,9 @@ export default function Footer() {
             </h4>
             <div className="space-y-3">
               {[
-                { day: "Lundi - Vendredi", hours: "8h00 - 18h00" },
-                { day: "Samedi", hours: "8h00 - 20h00" },
-                { day: "Dimanche", hours: "9h00 - 16h00" },
+                { day: "Lundi - Jeudi", hours: "9h00 - 21h00" },
+                { day: "Vendredi", hours: "14h00 - 22h00" },
+                { day: "Samedi - Dimanche", hours: "8h00 - 22h30" },
               ].map((schedule) => (
                 <div
                   key={schedule.day}
@@ -236,9 +187,9 @@ export default function Footer() {
               onClick={() => window.open(whatsappLink, "_blank")}
               className="w-full bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              <span className="flex items-center justify-center">
+              <span className="flex gap-2 items-center justify-center">
                 <Phone />
-                Contactez-nous
+                <span>Contactez-nous</span>
               </span>
             </button>
           </div>
@@ -281,4 +232,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-};
+}
